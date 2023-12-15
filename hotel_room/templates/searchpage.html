@@ -1,0 +1,66 @@
+{% extends 'basic.html' %}
+{% block title %}contact
+{% endblock title %}
+{% block body %}
+<div class="container-fluid px-0" style="border:1px solid rgb(0, 0, 0); background: rgb(42,42,42);
+    background: linear-gradient(343deg, rgba(42,42,42,1) 30%, rgba(0,67,83,1) 66%, rgba(0,0,0,1) 85%);">
+<h4 class="text-center">Results</h4>
+
+<div class="container-fluid px-0" style="border:1px solid red">
+
+    <table class="table table-striped" >
+        <thead>
+            <tr>
+                <th class="text-center">Information</th>
+                <th class="text-center">View</th>
+            </tr>
+        </thead>
+        {% for r in rooms %}
+        <tbody >
+            
+                <td class="text-center">
+                    <!--Room details-->
+                    <h1>{{ r.name }}</h1>
+                    <p>Capacity :Max person 3</p>
+                    <p>Hotel : {{r.hotel.name}}</p>
+                    <p>Location : {{r.hotel.location}}</p>
+                    <p>Services :Wifi,Tv,Bathroom</p>
+                    <p> Views :Sea View</p>
+                    <p>Room no :{{ r.room_number }}</p>
+                    
+                    {% if user.is_authenticated %}
+
+                    <button style="background: #92e1b843;border-radius: 4px;color: rgb(0, 0, 0);"> <a style="color: rgb(0, 0, 0);" href="   ">Book Room</a></button> 
+                    <button style="background: #06b058d0;border-radius: 4px;color: rgb(0, 0, 0);"> <a style="color: aliceblue;" href="+91{{ r.hotel.owner_number }} ">Enquire </a></button> 
+                    
+                    {% endif %}
+                    
+                </td>
+                <td class="text-center">
+                    <!--Room Images-->
+                    <img src="{{ r.image.url }}" alt="image" class="img-fluid pt-4" style="width: 300px; height: 200px;">
+                </td>
+            </tr>
+        </tbody>
+        {% endfor %}
+
+    
+    </table>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock body %}

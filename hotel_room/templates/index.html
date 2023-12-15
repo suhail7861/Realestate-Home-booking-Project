@@ -1,0 +1,73 @@
+{% extends 'basic.html' %}
+
+{% block title %}
+Uber  room  
+{% endblock title %}
+
+{% block body %}
+<!-- Booking Section starts here -->
+
+<!--Room tables starts here-->
+<div class="container-fluid px-0" style="border:1px solid rgb(0, 0, 0); background: rgb(42,42,42);background: linear-gradient(343deg, rgba(42,42,42,1) 30%, rgba(0,67,83,1) 66%, rgba(0,0,0,1) 85%);">
+    <table class="table table-striped" style="color: aliceblue;">
+        <thead>
+            <tr>
+                <th class="text-center" style="color: aliceblue;">Information</th>
+                <th class="text-center" style="color: aliceblue;">View</th>
+            </tr>   
+        </thead>
+        {% for r in rooms %}
+        <tbody>
+            <td class="text-center">
+                <!--Room details-->
+                <b>Hotel : {{r.hotel.name}}</b>
+                <br></br>
+                <p>Location : {{r.hotel.location}}</p>
+                <p>Capacity :Max person 3</p>
+                <p>Services :Wifi,Tv,Cctv</p>
+                <p> Views :Sea View</p>
+                <p>Room no :{{ r.room_number }}</p>
+                <p>Room Type :: {{r.room_type}}</p>
+            </td>
+                <td class="text-center">
+                    <div class="" style="padding-top:0" >
+                        <!--Room Images-->
+                        <a href="{% url 'make_reservation' room_id=r.id %}">     
+                        <img src="{{ r.image.url }}" alt="image" class="img-fluid pt-4"style="width: 300px; height: 200px;"></a>
+                            <div style="display: fle; padding-top: 13px;">
+                                {% if user.is_authenticated %}
+                                <!-- "bookform?hotel_name={{ r.hotel.name }}" -->
+                                <a href="{% url 'make_reservation' room_id=r.id %}">   
+                                    <button class="block" style="background: #92e1b843; border-radius: 4px; color: rgb(0, 0, 0); width: 100px;"><b>Book</b></button>
+                                </a>
+                            
+                                    <!-- <a href="bookform"><button class="block"style="background: #92e1b843;border-radius: 4px;color: rgb(0, 0, 0); width: 100px;"><b>Book</b></button></a> -->
+                                    <a href="tel:+91{{ r.hotel.owner_number }}"><button type="button" class="block"style="background: #06b058d0;border-radius: 4px;color: rgb(255, 255, 255); width: 100px;"><b>Enquire</b></button></a>
+                                {% endif %}
+            
+                            </div>
+                            <div id="roomsContainer">
+                                {% for room in rooms %}
+                                    <p>{{ room.name }}</p>
+                                {% endfor %}
+                            </div>
+                            
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        {% endfor %}
+    </table>
+</div>
+
+ 
+
+
+
+
+
+
+
+
+
+{% endblock %}

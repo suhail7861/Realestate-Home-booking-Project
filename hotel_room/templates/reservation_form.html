@@ -1,0 +1,28 @@
+
+{% extends 'basic.html' %}
+
+{% block title %}
+Uber  room  
+{% endblock title %}
+
+{% block body %}
+
+
+
+
+
+
+
+<!-- yourapp/templates/reservation_form.html -->
+<h2 style="color: aliceblue;">Make a Reservation</h2>
+<form method="post" action="" style="color: aliceblue;">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <style>
+      
+    </style>
+    <button type="submit">Submit</button>
+</form>
+
+{% endblock %}
+
